@@ -23,10 +23,7 @@ enum : std::uint8_t {
 
   OP_PUSH = 0x0D,
   OP_POP = 0x0E,
-  // OP_JMP = 0x07,
-  // OP_CALL = 0x08,
-  // OP_RET = 0x09,
-  // OP_SYSCALL = 0x0C
+  OP_JMP = 0x0F,
 };
 
 }  // namespace eblang

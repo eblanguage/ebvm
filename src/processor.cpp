@@ -52,4 +52,6 @@ void Processor::Shr(std::uint8_t dest, std::uint8_t src) {
   vm.registers[dest] >>= vm.registers[src];
 }
 
+void Processor::Jump(std::uint8_t offset) { vm.pc = offset; }
+
 }  // namespace eblang

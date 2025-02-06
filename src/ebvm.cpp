@@ -113,6 +113,11 @@ void VM::Step() {
       processor.Move(dest, stack.Pop());
       break;
     }
+    case OP_JMP: {
+      auto offset = bytecode[pc++];
+      processor.Jump(offset);
+      break;
+    }
 
     default: {
       throw std::runtime_error("Unknown instruction");

@@ -27,5 +27,7 @@ class Processor {
   void Not(std::uint8_t dest);
   void Shl(std::uint8_t dest, std::uint8_t src);
   void Shr(std::uint8_t dest, std::uint8_t src);
+
+  void Jump(std::uint8_t offset);
 };
 }  // namespace eblang
