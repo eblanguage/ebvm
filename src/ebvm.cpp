@@ -133,17 +133,6 @@ void VM::Step() {
     default: {
       throw std::runtime_error("Unknown instruction");
     }
-
-      // Stack
-      // case OP_PUSH: {
-      //   stack.push_back(registers[REG_R0]);
-      //   break;
-      // }
-      // case OP_POP: {
-      //   registers[REG_R0] = stack.back();
-      //   stack.pop_back();
-      //   break;
-      // }
   }
 }
 
