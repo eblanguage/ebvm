@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "ebvm/ebvm.hpp"
 
 namespace eblang {
@@ -53,5 +55,13 @@ void Processor::Shr(std::uint8_t dest, std::uint8_t src) {
 }
 
 void Processor::Jump(std::uint8_t offset) { vm.pc = offset; }
+
+void Processor::Call(std::uint8_t offset) { vm.stack.push_back(vm.pc); }
+
+void Processor::Ret() {
+  vm.pc = vm.stack.back();
+  std::cout << "1PC: " << vm.pc << std::endl;
+  vm.stack.pop_back();
+}
 
 }  // namespace eblang

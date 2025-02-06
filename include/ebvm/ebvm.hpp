@@ -19,12 +19,11 @@ class VM {
 
   std::array<cell_t, 4> registers{};
   std::vector<std::uint8_t> bytecode{};
-  std::stack<std::uintptr_t> call_stack{};
-  std::vector<std::uint8_t> heap;
+  std::vector<std::uint8_t> stack{};
+  std::vector<std::uint8_t> heap{};
   std::uintptr_t pc{};
 
   Processor processor;
-  Stack stack;
 
   void Step();
 

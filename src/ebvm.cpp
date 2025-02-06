@@ -6,7 +6,7 @@
 
 namespace eblang {
 
-VM::VM() : processor(*this), stack(*this) {}
+VM::VM() : processor(*this) {}
 
 void VM::Load(std::vector<std::uint8_t> data) {
   this->bytecode = std::move(data);
@@ -105,17 +105,28 @@ void VM::Step() {
     // Stack
     case OP_PUSH: {
       auto value = bytecode[pc++];
-      stack.Push(value);
+      stack.push_back(value);
       break;
     }
     case OP_POP: {
       auto dest = bytecode[pc++];
-      processor.Move(dest, stack.Pop());
+      processor.Move(dest, stack.back());
+      stack.pop_back();
       break;
     }
     case OP_JMP: {
       auto offset = bytecode[pc++];
       processor.Jump(offset);
+      break;
+    }
+    case OP_CALL: {
+      // TODO: FIX CALL STACK
+      auto offset = bytecode[pc++];
+      processor.Call(offset);
+      break;
+    }
+    case OP_RET: {
+      processor.Ret();
       break;
     }
 
@@ -138,16 +149,14 @@ void VM::Step() {
 
 Processor& VM::GetProcessor() { return processor; }
 
-Stack& VM::GetStack() { return stack; }
-
 void VM::Dump() {
   std::cout << "PC: " << pc << " | " << "r0: " << registers[REG_R0]
             << " r1: " << registers[REG_R1] << " r2: " << registers[REG_R2]
             << " "
             << "r3: " << registers[REG_R3] << " | Stack: ";
-  for (auto& value : stack.stack) {
-    std::cout << static_cast<int>(value) << " ";
-  }
+  // for (auto& value : stack.stack) {
+  //   std::cout << static_cast<int>(value) << " ";
+  // }
   std::cout << std::endl;
 }
 

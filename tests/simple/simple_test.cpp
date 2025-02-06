@@ -15,10 +15,21 @@ int main() {
       // 0x0, // HALT
 
       // TODO: Implement stack
-      // 0xD, 0, // PUSH R0
-      // 0xD, 1, // PUSH R1
-      // 0xE, 0, // POP R0
-      // 0xE, 1, // POP R1
+      0xD, 98, // PUSH R0
+      0xD, 78, // PUSH R1
+      0xE, 0, // POP R0
+      0xE, 1, // POP R1
+      123, // Dump
+
+      0xD, 0, // PUSH R0
+      0xD, 1, // PUSH R1
+      0x10, 27, // CALL 0
+      123, // Dump
+
+      0xE, 0, // POP R0
+      0xE, 1, // POP R1
+      0x11, // RET
+
       // clang-format on
   };
   vm.Load(code);
